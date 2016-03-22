@@ -17,6 +17,8 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -50,7 +52,19 @@ public class DemoComposer {
         data.addRow("Sleep", new FormattedValue(7, "7.000"));
         return data;
     }
-
+    //'Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General','Western', 'Literature'
+    public DataTable getSimpleStackedDataModel() {
+        DataTable data = new DataTable();
+        data.addStringColumn("Genre", "genre");
+        data.addNumberColumn("Fantasy & Sci Fi", "fantasy");
+        data.addNumberColumn("Romance", "romance");
+        data.addNumberColumn("General", "general");
+        data.addNumberColumn("Western", "western");
+        data.addRow("2010", 11,12,23,54);
+        data.addRow("2011", 2,12,67,23);
+        data.addRow("2012", 2,23,45,12);
+        return data;
+    }
     public DataTable getTimelineDataModel() {
         DataTable data = new DataTable();
         data.addStringColumn("Title");
@@ -72,6 +86,15 @@ public class DemoComposer {
         GoogleChart chart = randomChart();
         if (chart instanceof Timeline) {
             chart.setData(getTimelineDataModel());
+        } else if (chart instanceof ColumnChart) {
+            chart.setData(getSimpleStackedDataModel());
+           // chart.setTitle("Company Performance");
+            Map<String, Object> legend = new HashMap<String, Object>();
+            legend.put("position", "top");
+            legend.put("maxLines", 3);
+            chart.setOption("legend", legend);
+            chart.setOption("isStacked", true);
+            //((ColumnChart) chart).setStacked(true);
         } else {
             chart.setData(getSimpleDataModel());
         }

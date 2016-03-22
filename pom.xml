@@ -152,7 +152,7 @@
                 </configuration>
             </plugin>
             <!-- Build javadoc -->
-            <plugin>
+           <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.7</version>
@@ -168,7 +168,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
             <!-- Release to Maven Central with passphrase -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
